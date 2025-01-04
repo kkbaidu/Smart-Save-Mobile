@@ -1,45 +1,75 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome } from "@expo/vector-icons";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { Colors } from "@/constants/Colors";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import HomeScreen from "@/app/(tabs)/index"; // Adjust this import path if your HomeScreen is in a subfolder
+import InsightsScreen from "@/app/(tabs)/insights";
+import SavingsScreen from "@/app/(tabs)/savings";
+import AccountScreen from "@/app/(tabs)/account";
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+// Create the Bottom Tab Navigator
+const Tab = createBottomTabNavigator();
+
+export default function TabsLayout() {
+  const colorScheme = useColorScheme() || "light"; // Default to 'light' if colorScheme is null or undefined
 
   return (
-    <Tabs
+    <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
+        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarStyle: { height: 60, paddingBottom: 8 },
+        headerShown: false, // Hides the header for all screens in the tab navigator
+      }}
+    >
+      {/* Home Tab */}
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="home" size={size} color={color} />
+          ),
+          tabBarLabel: "Home",
         }}
       />
-      <Tabs.Screen
-        name="explore"
+
+      {/* Insights Tab */}
+      <Tab.Screen
+        name="Insights"
+        component={InsightsScreen}
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="line-chart" size={size} color={color} />
+          ),
+          tabBarLabel: "Insights",
         }}
       />
-    </Tabs>
+
+      {/* Savings Tab */}
+      <Tab.Screen
+        name="Savings"
+        component={SavingsScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="money" size={size} color={color} />
+          ),
+          tabBarLabel: "Savings",
+        }}
+      />
+
+      {/* Account Tab */}
+      <Tab.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user" size={size} color={color} />
+          ),
+          tabBarLabel: "Account",
+        }}
+      />
+    </Tab.Navigator>
   );
 }

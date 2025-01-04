@@ -1,74 +1,55 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import Header from "@/components/Header";
+import BottomTab from "@/components/BottomTab";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+const HomeScreen = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
-}
+    <View className="flex-1 bg-white px-6">
+      {/* Header */}
+      <Header title="SmartSave" subtitle="Welcome back, Mary!" />
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+      {/* Financial Overview */}
+      <View className="flex-1 items-center justify-center">
+        <View className="my-4">
+          <Text className="text-xl text-blue-500 font-bold text-center">
+            Unlock
+          </Text>
+          <Text className="text-2xl text-black font-bold text-center">
+            Your Financial Future.
+          </Text>
+        </View>
+
+        {/* Savings Card */}
+        <View className="bg-blue-500 rounded-lg p-6 w-full items-center mb-4">
+          <Text className="text-white text-lg font-bold">₵ 2,900.00</Text>
+          <Text className="text-white">Total savings</Text>
+        </View>
+
+        {/* Income and Expenses */}
+        <View className="flex-row justify-between w-full mb-4">
+          <View className="items-center bg-blue-200 rounded-md p-4 w-[45%]">
+            <Text className="text-blue-500 text-xl font-bold">⬆</Text>
+            <Text className="text-gray-700">Income</Text>
+            <Text className="text-gray-700">₵4500</Text>
+          </View>
+          <View className="items-center bg-red-200 rounded-md p-4 w-[45%]">
+            <Text className="text-red-500 text-xl font-bold">⬇</Text>
+            <Text className="text-gray-700">Expenses</Text>
+            <Text className="text-gray-700">₵2000</Text>
+          </View>
+        </View>
+
+        {/* Goals Button */}
+        <TouchableOpacity className="bg-blue-500 rounded-lg p-4 w-full flex-row justify-center items-center">
+          <Text className="text-white font-bold mr-2">GOALS</Text>
+          <Text className="text-white">→</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Bottom Navigation */}
+      {/* <BottomTab /> */}
+    </View>
+  );
+};
+
+export default HomeScreen;
