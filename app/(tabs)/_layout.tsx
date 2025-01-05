@@ -1,74 +1,87 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { Colors } from "@/constants/Colors";
 
-import HomeScreen from "@/app/(tabs)/index"; // Adjust this import path if your HomeScreen is in a subfolder
+import HomeScreen from "@/app/(tabs)/index";
 import InsightsScreen from "@/app/(tabs)/insights";
 import SavingsScreen from "@/app/(tabs)/savings";
 import AccountScreen from "@/app/(tabs)/account";
 
-// Create the Bottom Tab Navigator
 const Tab = createBottomTabNavigator();
 
 export default function TabsLayout() {
-  const colorScheme = useColorScheme() || "light"; // Default to 'light' if colorScheme is null or undefined
+  const colorScheme = useColorScheme() || "light"; // Default to 'light' if no color scheme is available
 
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-        tabBarStyle: { height: 60, paddingBottom: 8 },
-        headerShown: false, // Hides the header for all screens in the tab navigator
-      }}
+      screenOptions={({ route }) => ({
+        tabBarStyle: {
+          backgroundColor: "#f3f4f6", // bg-gray-100
+          height: 60,
+          paddingBottom: 8,
+        },
+        tabBarActiveTintColor: "#3b82f6", // blue-500
+        tabBarInactiveTintColor: "#9ca3af", // gray-400 for inactive icons
+        headerShown: false, // Hides the header for all screens
+
+        // Custom tabBarIcon for each tab
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName: string;
+
+          switch (route.name) {
+            case "Home":
+              iconName = "home";
+              break;
+            case "Insights":
+              iconName = "line-chart";
+              break;
+            case "Savings":
+              iconName = "money";
+              break;
+            case "Account":
+              iconName = "user";
+              break;
+            default:
+              iconName = "circle";
+          }
+
+          return (
+            <FontAwesome
+              name={iconName as keyof typeof FontAwesome.glyphMap}
+              size={size}
+              color={focused ? "#3b82f6" : color} // Active icon color: blue-500
+            />
+          );
+        },
+      })}
     >
       {/* Home Tab */}
       <Tab.Screen
         name="Home"
         component={HomeScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="home" size={size} color={color} />
-          ),
-          tabBarLabel: "Home",
-        }}
+        options={{ tabBarLabel: "Home" }}
       />
 
       {/* Insights Tab */}
       <Tab.Screen
         name="Insights"
         component={InsightsScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="line-chart" size={size} color={color} />
-          ),
-          tabBarLabel: "Insights",
-        }}
+        options={{ tabBarLabel: "Insights" }}
       />
 
       {/* Savings Tab */}
       <Tab.Screen
         name="Savings"
         component={SavingsScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="money" size={size} color={color} />
-          ),
-          tabBarLabel: "Savings",
-        }}
+        options={{ tabBarLabel: "Savings" }}
       />
 
       {/* Account Tab */}
       <Tab.Screen
         name="Account"
         component={AccountScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="user" size={size} color={color} />
-          ),
-          tabBarLabel: "Account",
-        }}
+        options={{ tabBarLabel: "Account" }}
       />
     </Tab.Navigator>
   );

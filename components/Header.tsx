@@ -3,10 +3,11 @@ import { View, Text, Image } from "react-native";
 const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
   return (
     <View className="flex-row justify-between items-center py-4">
-      <View>
-        <Text className="text-xl font-bold text-blue-500">{title}</Text>
-        <Text className="text-gray-500">{subtitle}</Text>
-      </View>
+      <Image
+        source={require("@/assets/images/smart-save-logo.png")}
+        className="w-[15rem] h-10 rounded-full"
+      />
+
       <View className="flex-row items-center space-x-2">
         <Image
           source={{ uri: "https://via.placeholder.com/40" }}

@@ -50,15 +50,19 @@ const SavingGoalsScreen = () => {
       {/* Header */}
       <View className="flex-row justify-between items-center mt-6 px-4">
         <Text className="text-white text-xl font-bold">20 🔥</Text>
-        <View className="flex-row items-center space-x-4">
+        <View className="flex-row items-center space-x-2">
           <TouchableOpacity>
             <Image
-              source={{ uri: "https://via.placeholder.com/40" }}
-              className="w-10 h-10 rounded-full"
+              source={require("@/assets/images/profile-pic.png")}
+              className="w-10 h-10 rounded-full mr-1"
             />
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text className="text-white text-lg">🔔</Text>
+          <TouchableOpacity className="bg-gray-100 p-2 rounded-full">
+            <Image
+              source={require("@/assets/images/bell-icon.png")}
+              className="w-6 h-6"
+              resizeMode="contain"
+            />
           </TouchableOpacity>
         </View>
       </View>
