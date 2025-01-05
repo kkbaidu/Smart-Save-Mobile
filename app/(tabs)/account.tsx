@@ -7,90 +7,12 @@ import {
   ScrollView,
   Button,
 } from "react-native";
+import { RenderSavings } from "@/components/RenderSavings";
 import { FontAwesome } from "@expo/vector-icons";
+import { savings, transactions } from "@/components/utils/data";
 
 const Account = () => {
   const [seeAll, setSeeAll] = useState(false);
-
-  const savings = [
-    {
-      id: 1,
-      name: "Personal Savings",
-      amount: "₵1000",
-      growth: "+12%",
-      growthPositive: true,
-      icon: "💰",
-    },
-    {
-      id: 2,
-      name: "Laptop Savings",
-      amount: "₵1500",
-      growth: null,
-      growthPositive: null,
-      icon: "💻",
-    },
-    {
-      id: 3,
-      name: "Emergency Fund",
-      amount: "₵100",
-      growth: null,
-      growthPositive: null,
-      icon: "🚨",
-    },
-    {
-      id: 4,
-      name: "Beauty Savings",
-      amount: "₵300",
-      growth: "+5%",
-      growthPositive: true,
-      icon: "💄",
-    },
-  ];
-
-  const transactions = [
-    { id: 1, type: "Top Up", amount: "₵500.00", date: "Today 2:34pm" },
-    { id: 2, type: "Add Money", amount: "₵200.00", date: "Today 5:04pm" },
-    { id: 3, type: "Top Up", amount: "₵500.00", date: "Yesterday 6:14pm" },
-    { id: 4, type: "Add Money", amount: "₵700.00", date: "Yesterday 7:34pm" },
-  ];
-
-  const renderSavings = () => (
-    <View className="flex-wrap flex-row justify-between mt-6 px-4 mb-10">
-      {savings.map((saving) => (
-        <View
-          key={saving.id}
-          className="bg-[#E0E3E94D] rounded-tl-3xl rounded-br-3xl w-[48%] mb-4 p-4 relative"
-        >
-          <Text className="text-2xl text-center bg-white w-[30px] h-[30px] rounded-lg">
-            {saving.icon}
-          </Text>
-          <TouchableOpacity className="absolute top-2 right-2">
-            <Text className="text-red-500">📌</Text>
-          </TouchableOpacity>
-          <Text className="text-gray-700 font-bold mt-2">{saving.name}</Text>
-          <View className="flex flex-row justify-between items-center">
-            <Text className="text-purple-600 text-lg font-bold text-left">
-              {saving.amount}
-            </Text>
-            {saving.growth && (
-              <Text
-                className={`text-[10px] text-white font-light text-center rounded-lg ${
-                  saving.growthPositive ? "bg-green-500" : "bg-red-500"
-                }`}
-              >
-                {saving.growth} {saving.growthPositive ? "➚" : "⬋"}
-              </Text>
-            )}
-          </View>
-          <TouchableOpacity className="bg-gray-100 rounded-full px-4 py-2 mt-3">
-            <Text className="text-center text-gray-700 font-bold">
-              {saving.growth ? "Topup" : "Add money"}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      ))}
-    </View>
-  );
 
   return (
     <ScrollView
@@ -120,7 +42,7 @@ const Account = () => {
             </View>
           </View>
           {/* Savings Cards */}
-          {renderSavings()}
+          <RenderSavings savings={savings} />
         </View>
         {/* Recent Transactions */}
         <View className="px-6 py-4">

@@ -1,57 +1,8 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  Image,
-  ScrollView,
-} from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
+import { savingGoals } from "@/components/utils/data";
 import { ProgressBar } from "react-native-paper";
 
 const SavingGoalsScreen = () => {
-  const savingGoals = [
-    {
-      id: 1,
-      name: "Emergency Fund",
-      amountSaved: "₵1,000",
-      targetAmount: "₵800",
-      progress: 0.8,
-      growth: "+20%",
-      growthPositive: true,
-      icon: "🚨",
-    },
-    {
-      id: 2,
-      name: "Beauty and Maintenance",
-      amountSaved: "₵300",
-      targetAmount: "₵700",
-      progress: 0.4,
-      growth: null,
-      growthPositive: null,
-      icon: "💅",
-    },
-    {
-      id: 3,
-      name: "Laptop Savings",
-      amountSaved: "₵1,500",
-      targetAmount: "₵3,000",
-      progress: 0.5,
-      growth: "+25%",
-      growthPositive: true,
-      icon: "💻",
-    },
-    {
-      id: 4,
-      name: "Personal Savings",
-      amountSaved: "₵1,000",
-      targetAmount: "₵4,000",
-      progress: 0.25,
-      growth: null,
-      growthPositive: null,
-      icon: "💰",
-    },
-  ];
-
   return (
     <View className="flex-1 bg-[#3875C8]">
       {/* Header */}
@@ -138,7 +89,7 @@ const SavingGoalsScreen = () => {
             </View>
           )}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 16 }} // Ensures scrollable space at the bottom
+          contentContainerStyle={{ paddingBottom: 16 }}
         />
       </View>
     </View>
