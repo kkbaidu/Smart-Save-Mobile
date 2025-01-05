@@ -68,16 +68,16 @@ const SavingGoalsScreen = () => {
       </View>
 
       {/* Title */}
-      <Text className="text-center text-white text-2xl font-bold mt-4">
+      <Text className="text-center text-white text-2xl font-bold mt-20">
         Saving Goals
       </Text>
 
       {/* Goals Section */}
-      <View className="bg-white rounded-t-3xl mt-6 flex-1">
+      <View className="bg-white rounded-t-3xl mt-2 flex-1">
         <View className="flex-row justify-between items-center px-6 py-4">
-          <Text className="text-gray-800 text-lg font-bold">My Goals</Text>
+          <Text className="text-gray-800 text-2xl font-bold">My Goals</Text>
           <TouchableOpacity>
-            <Text className="text-blue-500 text-xl font-bold">+</Text>
+            <Text className="text-blue-500 text-2xl font-bold">+</Text>
           </TouchableOpacity>
         </View>
 
@@ -90,8 +90,10 @@ const SavingGoalsScreen = () => {
               {/* Goal Row */}
               <View className="flex-row justify-between items-center">
                 <View className="flex-row items-center space-x-4">
-                  <Text className="text-2xl">{item.icon}</Text>
-                  <View>
+                  <View className="flex justify-center border border-[#D9D9D9] w-10 h-10 rounded-xl">
+                    <Text className="text-2xl text-center">{item.icon}</Text>
+                  </View>
+                  <View className="ml-2">
                     <Text className="text-gray-700 font-bold">{item.name}</Text>
                     <Text className="text-black text-lg font-bold">
                       {item.amountSaved}

@@ -87,17 +87,19 @@ const Account = () => {
         ListHeaderComponent={
           <>
             {/* Header */}
-            <View className="flex-row justify-between items-center px-4 mt-6">
+            <View className="flex-col justify-between items-center px-4 mt-6">
               <View>
                 <Text className="text-white text-sm">
                   Mary, you are 90% closer to your monthly saving goal 🎉!
                 </Text>
-                <Text className="text-white text-xl font-bold mt-2">20 🔥</Text>
               </View>
-              <TouchableOpacity className="bg-white flex-row items-center p-2 rounded-full">
-                <Text className="text-blue-500 font-bold">Create</Text>
-                <Text className="text-green-500 text-lg ml-1">➕</Text>
-              </TouchableOpacity>
+              <View className="w-full flex flex-row justify-between">
+                <Text className="text-white text-xl font-bold mt-2">20 🔥</Text>
+                <TouchableOpacity className="bg-white flex-row items-center p-2 rounded-full">
+                  <Text className="text-blue-500 font-bold">Create</Text>
+                  <Text className="text-green-500 text-lg ml-1">➕</Text>
+                </TouchableOpacity>
+              </View>
             </View>
 
             {/* Savings Cards */}
