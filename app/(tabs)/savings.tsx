@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  Image,
+  ScrollView,
+} from "react-native";
 import { ProgressBar } from "react-native-paper";
 
 const SavingGoalsScreen = () => {
@@ -46,7 +53,7 @@ const SavingGoalsScreen = () => {
   ];
 
   return (
-    <View className="flex-1 bg-blue-500">
+    <View className="flex-1 bg-[#3875C8]">
       {/* Header */}
       <View className="flex-row justify-between items-center mt-6 px-4">
         <Text className="text-white text-xl font-bold">20 🔥</Text>

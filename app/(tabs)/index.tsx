@@ -1,13 +1,13 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 
 const HomeScreen = () => {
   return (
-    <View className="flex-1 bg-white px-12">
+    <ScrollView className="flex-1 bg-white px-12">
       {/* Header */}
       <View className="flex-row justify-between items-center py-4">
         <Image
           source={require("@/assets/images/smart-save-logo.png")}
-          className="w-[10rem] h-10"
+          className="w-[45%] h-10 -ml-3"
           resizeMode="contain"
         />
 
@@ -27,8 +27,8 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <Text className="font-light">Welcome back, Mary!</Text>
-      <View className="w-full px-24 my-8">
+      <Text className="font-light w-30 -mt-2">Welcome back, Mary!</Text>
+      <View className="flex justify-center items-center w-full px-24 my-8">
         <Image
           source={require("@/assets/images/vector-arrows.png")}
           className="w-full h-[10rem]"
@@ -91,7 +91,7 @@ const HomeScreen = () => {
           />
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

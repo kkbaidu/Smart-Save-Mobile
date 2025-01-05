@@ -1,6 +1,17 @@
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  Button,
+} from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
 const Account = () => {
+  const [seeAll, setSeeAll] = useState(false);
+
   const savings = [
     {
       id: 1,
@@ -44,29 +55,33 @@ const Account = () => {
   ];
 
   const renderSavings = () => (
-    <View className="flex-wrap flex-row justify-between mt-6 px-4">
+    <View className="flex-wrap flex-row justify-between mt-6 px-4 mb-10">
       {savings.map((saving) => (
         <View
           key={saving.id}
-          className="bg-white rounded-lg w-[48%] mb-4 p-4 relative"
+          className="bg-[#E0E3E94D] rounded-tl-3xl rounded-br-3xl w-[48%] mb-4 p-4 relative"
         >
-          <Text className="text-2xl">{saving.icon}</Text>
+          <Text className="text-2xl text-center bg-white w-[30px] h-[30px] rounded-lg">
+            {saving.icon}
+          </Text>
           <TouchableOpacity className="absolute top-2 right-2">
             <Text className="text-red-500">📌</Text>
           </TouchableOpacity>
           <Text className="text-gray-700 font-bold mt-2">{saving.name}</Text>
-          <Text className="text-purple-600 text-lg font-bold mt-2">
-            {saving.amount}
-          </Text>
-          {saving.growth && (
-            <Text
-              className={`text-sm mt-1 ${
-                saving.growthPositive ? "text-green-500" : "text-red-500"
-              }`}
-            >
-              {saving.growth} {saving.growthPositive ? "⬆" : "⬇"}
+          <View className="flex flex-row justify-between items-center">
+            <Text className="text-purple-600 text-lg font-bold text-left">
+              {saving.amount}
             </Text>
-          )}
+            {saving.growth && (
+              <Text
+                className={`text-[10px] text-white font-light text-center rounded-lg ${
+                  saving.growthPositive ? "bg-green-500" : "bg-red-500"
+                }`}
+              >
+                {saving.growth} {saving.growthPositive ? "➚" : "⬋"}
+              </Text>
+            )}
+          </View>
           <TouchableOpacity className="bg-gray-100 rounded-full px-4 py-2 mt-3">
             <Text className="text-center text-gray-700 font-bold">
               {saving.growth ? "Topup" : "Add money"}
@@ -78,57 +93,64 @@ const Account = () => {
   );
 
   return (
-    <View className="flex-1 bg-blue-500">
-      <FlatList
-        data={transactions}
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 16 }}
-        ListHeaderComponent={
-          <>
-            {/* Header */}
-            <View className="flex-col justify-between items-center px-4 mt-6">
-              <View>
-                <Text className="text-white text-sm">
-                  Mary, you are 90% closer to your monthly saving goal 🎉!
-                </Text>
-              </View>
-              <View className="w-full flex flex-row justify-between">
-                <Text className="text-white text-xl font-bold mt-2">20 🔥</Text>
-                <TouchableOpacity className="bg-white flex-row items-center p-2 rounded-full">
-                  <Text className="text-blue-500 font-bold">Create</Text>
-                  <Text className="text-green-500 text-lg ml-1">➕</Text>
-                </TouchableOpacity>
-              </View>
+    <ScrollView
+      contentContainerStyle={{ paddingBottom: 16, backgroundColor: "#fff" }}
+    >
+      <View className="bg-white">
+        <View className="bg-[#3875C8] rounded-b-[2rem]">
+          {/* Header */}
+          <View className="flex-col justify-between items-center px-4 mt-6">
+            <View className="w-full flex flex-row justify-between mb-4">
+              <Text className="text-white text-sm w-48">
+                Mary, you are 90% closer to your monthly saving goal 🎉!
+              </Text>
+              <Image
+                source={require("@/assets/images/profile-pic.png")}
+                className="w-10 h-10 rounded-full mr-1"
+              />
             </View>
-
-            {/* Savings Cards */}
-            {renderSavings()}
-
-            {/* Recent Transactions Header */}
-            <View className="bg-white rounded-t-3xl px-6 py-4 mt-6">
-              <View className="flex-row justify-between items-center">
-                <Text className="text-lg font-bold text-gray-700">
-                  Recent Transactions
-                </Text>
-                <TouchableOpacity>
-                  <Text className="text-purple-500 font-bold">See All</Text>
-                </TouchableOpacity>
-              </View>
+            <View className="w-full flex flex-row justify-between">
+              <Text className="text-white text-xl font-bold mt-2">20 🔥</Text>
+              <TouchableOpacity className="bg-white flex-row justify-center items-center p-2 rounded-full w-32">
+                <Text className="text-blue-500 font-bold">Create </Text>
+                <View className="flex justify-center items-center border-[2px] border-green-500 rounded-full w-7 h-7 p-1">
+                  <FontAwesome name={"plus"} size={15} color={"#22c55e"} />
+                </View>
+              </TouchableOpacity>
             </View>
-          </>
-        }
-        renderItem={({ item }) => (
-          <View className="bg-white px-6 py-4 mx-8 mt-4 rounded-lg flex-row justify-between items-center shadow-sm">
-            <View>
-              <Text className="text-gray-700 font-bold">{item.type}</Text>
-              <Text className="text-gray-400 text-sm">{item.date}</Text>
-            </View>
-            <Text className="text-green-500 font-bold">{item.amount}</Text>
           </View>
-        )}
-      />
-    </View>
+          {/* Savings Cards */}
+          {renderSavings()}
+        </View>
+        {/* Recent Transactions */}
+        <View className="px-6 py-4">
+          <View className="w-full flex flex-row justify-between items-center">
+            <Text className="text-lg font-bold text-gray-700">
+              Recent Transactions
+            </Text>
+            <TouchableOpacity onPress={() => setSeeAll(!seeAll)}>
+              <Text className="text-[#4E38C8] text-sm text-right mt-1">
+                {seeAll ? "See less" : "See all"}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View className="pb-5 bg-[#D9D9D9] rounded-3xl">
+            {transactions.map((item) => (
+              <View
+                key={item.id}
+                className="bg-white px-6 py-4 mx-8 mt-4 rounded-lg flex-row justify-between items-center shadow-sm"
+              >
+                <View>
+                  <Text className="text-gray-700 font-bold">{item.type}</Text>
+                  <Text className="text-gray-400 text-sm">{item.date}</Text>
+                </View>
+                <Text className="text-green-500 font-bold">{item.amount}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
