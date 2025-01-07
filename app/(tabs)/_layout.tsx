@@ -17,13 +17,13 @@ export default function TabsLayout() {
       initialRouteName="Home"
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: "#f3f4f6", // bg-gray-100
+          backgroundColor: "#f3f4f6",
           height: 60,
           paddingBottom: 8,
         },
-        tabBarActiveTintColor: "#3b82f6", // blue-500
-        tabBarInactiveTintColor: "#9ca3af", // gray-400 for inactive icons
-        headerShown: false, // Hides the header for all screens
+        tabBarActiveTintColor: "#3b82f6",
+        tabBarInactiveTintColor: "#9ca3af",
+        headerShown: false,
 
         // Custom tabBarIcon for each tab
         tabBarIcon: ({ focused, color, size }) => {
@@ -50,7 +50,7 @@ export default function TabsLayout() {
             <FontAwesome
               name={iconName as keyof typeof FontAwesome.glyphMap}
               size={size}
-              color={focused ? "#3b82f6" : color} // Active icon color: blue-500
+              color={focused ? "#3b82f6" : color}
             />
           );
         },
