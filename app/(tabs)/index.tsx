@@ -43,18 +43,18 @@ const HomeScreen = () => {
         <View className="flex-1 items-center justify-start">
           <View className="mb-4">
             <View className="flex flex-row font-extrabold text-center">
-              <Text className="text-blue-500 text-[35px] font-black tracking-wider">
+              <Text className="text-blue-500 text-[35px] font-semibold tracking-wider">
                 Unlock
               </Text>
-              <Text className="text-[35px] font-black tracking-wider">
+              <Text className="text-[35px] font-nomal tracking-wider">
                 {" "}
                 Your
               </Text>
             </View>
-            <Text className="text-[35px] font-black text-center tracking-wider">
+            <Text className="text-[35px] font-nomal text-center tracking-wider">
               Financial
             </Text>
-            <Text className="text-[35px] font-black text-center tracking-wider">
+            <Text className="text-[35px] font-nomal text-center tracking-wider">
               Future.
             </Text>
           </View>
@@ -90,7 +90,7 @@ const HomeScreen = () => {
           {/* Goals Button */}
           <TouchableOpacity
             className="bg-blue-500 rounded-xl p-4 w-52 flex-row justify-center items-center mb-5"
-            onPress={() => router.replace("/savings")}
+            onPress={() => router.push("/saving-goals")}
           >
             <Text className="text-white font-bold mr-2">GOALS</Text>
             <Image
