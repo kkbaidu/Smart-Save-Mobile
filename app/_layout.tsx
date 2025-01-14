@@ -38,6 +38,15 @@ export default function RootLayout() {
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="signup/index" options={{ headerShown: false }} />
         <Stack.Screen name="login/index" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="saving-goals/index"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="personal-info/index"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="top-up/index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
