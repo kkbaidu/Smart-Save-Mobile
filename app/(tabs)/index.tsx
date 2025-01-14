@@ -90,7 +90,7 @@ const HomeScreen = () => {
 
           {/* Goals Button */}
           <TouchableOpacity
-            className="bg-blue-500 rounded-xl p-4 w-52 flex-row justify-center items-center mb-5"
+            className="bg-blue-500 rounded-xl p-4 w-52 flex-row justify-center items-center mb-24"
             onPress={() => router.push("/saving-goals")}
           >
             <Text className="text-white font-bold mr-2">GOALS</Text>

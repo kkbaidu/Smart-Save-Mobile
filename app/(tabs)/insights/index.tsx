@@ -111,7 +111,7 @@ const Insights = () => {
         </View>
 
         {/* Beauty Savings */}
-        <View className="flex-row items-center justify-between mb-4">
+        <View className="flex-row items-center justify-between mb-24">
           <View className="flex-row items-center">
             <View className="bg-pink-100 p-3 rounded-full justify-center items-center">
               <FontAwesome name="paint-brush" size={20} color="pink" />

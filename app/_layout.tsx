@@ -46,6 +46,10 @@ export default function RootLayout() {
           name="personal-info/index"
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="create-goal/index"
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="top-up/index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />

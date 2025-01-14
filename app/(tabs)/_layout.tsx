@@ -20,6 +20,17 @@ export default function TabsLayout() {
           backgroundColor: "#f3f4f6",
           height: 60,
           paddingBottom: 8,
+          marginHorizontal: 16, // Add horizontal margins
+          marginBottom: 10,
+          borderRadius: 20, // Round the sides
+          position: "absolute", // Ensure it's positioned correctly
+          borderWidth: 1,
+          borderColor: "#e5e7eb", // Optional: Add a subtle border
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.1,
+          shadowRadius: 6,
+          elevation: 5, // For Android shadow
         },
         tabBarActiveTintColor: "#3b82f6",
         tabBarInactiveTintColor: "#9ca3af",

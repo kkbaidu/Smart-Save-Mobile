@@ -4,49 +4,54 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  ImageBackground,
+  Image,
+  Alert,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 const Topup = () => {
-  const [amount, setAmount] = useState("36.00");
+  const [amount, setAmount] = useState("0.0");
+  const router = useRouter();
 
+  const handleDeposite = () => {
+    const numericAmount = Number(amount);
+    console.log(typeof numericAmount);
+    if (typeof numericAmount !== "number") {
+      Alert.alert("Invalid amount", "Please enter a valid amount");
+    } else if (numericAmount <= 0) {
+      Alert.alert("Invalid amount", "Please enter a valid amount");
+    } else {
+      Alert.alert("Success!", `${amount} added successfully!`);
+    }
+  };
   return (
-    <View className="flex-1 bg-white px-4">
+    <View className="flex-1 bg-white px-4 w-full">
       {/* Header */}
       <View className="flex-row justify-between items-center mt-8">
-        <TouchableOpacity>
-          <FontAwesome name="chevron-left" size={24} color="black" />
+        <TouchableOpacity
+          onPress={() => {
+            if (router.canGoBack()) {
+              router.back();
+            } else {
+              Alert.alert("No previous screen to go back to.");
+            }
+          }}
+          className=""
+        >
+          <FontAwesome name={"arrow-left"} size={15} />
         </TouchableOpacity>
         <Text className="text-lg font-bold">Add/Topup Money</Text>
         <View className="w-6" />
       </View>
 
       {/* Card Section */}
-      <View className="mt-8 items-center">
-        <View className="w-full h-48 rounded-xl overflow-hidden relative bg-[#1E3A8A]">
-          <ImageBackground
-            source={{ uri: "https://via.placeholder.com/350x200" }} // Replace with card background image if needed
-            className="flex-1"
-          >
-            <View className="absolute top-6 left-4">
-              <FontAwesome name="credit-card" size={24} color="white" />
-            </View>
-            <View className="absolute bottom-10 left-4">
-              <Text className="text-white text-xl font-bold">
-                4562 1122 4595 7852
-              </Text>
-              <Text className="text-white mt-2">AR Jonson</Text>
-              <View className="flex-row mt-1">
-                <Text className="text-white text-sm">Expiry Date: 24/2000</Text>
-                <Text className="text-white text-sm ml-4">CVV: 6986</Text>
-              </View>
-            </View>
-            <View className="absolute bottom-10 right-4">
-              <Text className="text-white text-sm font-bold">Mastercard</Text>
-            </View>
-          </ImageBackground>
-        </View>
+      <View className="my-12 items-center w-full px-6">
+        <Image
+          source={require("@/assets/images/card.jpg")}
+          className="w-full h-64 rounded-3xl"
+          resizeMode="contain"
+        />
       </View>
 
       {/* Amount Input */}
@@ -67,7 +72,10 @@ const Topup = () => {
 
       {/* Deposit Button */}
       <View className="mt-12 items-center">
-        <TouchableOpacity className="bg-blue-500 w-full py-4 rounded-lg items-center">
+        <TouchableOpacity
+          className="bg-blue-500 w-full py-4 rounded-lg items-center"
+          onPress={handleDeposite}
+        >
           <Text className="text-white text-lg font-bold">Deposit Money</Text>
         </TouchableOpacity>
       </View>

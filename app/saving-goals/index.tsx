@@ -55,7 +55,10 @@ const SavingGoals = () => {
               </View>
               <View className="w-full flex flex-row justify-between">
                 <Text className="text-white text-xl font-bold mt-2">20 🔥</Text>
-                <TouchableOpacity className="bg-white flex-row justify-center items-center p-2 rounded-full w-32">
+                <TouchableOpacity
+                  className="bg-white flex-row justify-center items-center p-2 rounded-full w-32"
+                  onPress={() => router.push("/create-goal")}
+                >
                   <Text className="text-blue-500 font-bold">Create </Text>
                   <View className="flex justify-center items-center border-[2px] border-green-500 rounded-full w-7 h-7 p-1">
                     <FontAwesome name={"plus"} size={15} color={"#22c55e"} />
