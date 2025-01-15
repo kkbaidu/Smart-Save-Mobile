@@ -91,6 +91,7 @@ const CreateGoal = () => {
       setDuration("");
       setTargetAmount("");
       setTargetDate("");
+      router.push("/(tabs)");
     } catch (error) {
       console.error("Error creating goal:", error);
       alert("Something went wrong. Please try again.");
@@ -170,7 +171,7 @@ const CreateGoal = () => {
         <TextInput
           value={targetDate}
           onChangeText={setTargetDate}
-          placeholder="Enter Date"
+          placeholder="12/01/2025"
           className="border border-gray-300 rounded-lg p-3 mb-6"
         />
 

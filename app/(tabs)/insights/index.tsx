@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  Image,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { LineChart } from "react-native-chart-kit";
@@ -43,8 +44,12 @@ const Insights = () => {
       <View className="flex-row justify-between items-center mt-8 px-3">
         <View></View>
         <Text className="text-xl font-bold text-center">Insights</Text>
-        <TouchableOpacity>
-          <FontAwesome name="bell-o" size={24} color="black" />
+        <TouchableOpacity className="bg-gray-100 p-2 rounded-full">
+          <Image
+            source={require("@/assets/images/bell-icon.png")}
+            className="w-6 h-6"
+            resizeMode="contain"
+          />
         </TouchableOpacity>
       </View>
 

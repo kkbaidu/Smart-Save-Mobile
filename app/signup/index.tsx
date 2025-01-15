@@ -10,11 +10,36 @@ import {
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
+import { Checkbox } from "react-native-paper";
 
 const SignUpScreen = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
+
+  const handleSignUp = () => {
+    // Check if all fields are filled
+    if (!username || !email || !phoneNumber || !password) {
+      Alert.alert("Error", "Please fill in all fields.");
+      return;
+    }
+
+    // Check if terms and conditions are accepted
+    if (!isChecked) {
+      Alert.alert(
+        "Error",
+        "Please accept the terms and conditions to continue."
+      );
+      return;
+    }
+
+    // Proceed with sign-up logic
+    router.replace("/(tabs)");
+  };
 
   return (
     <LinearGradient
@@ -35,6 +60,7 @@ const SignUpScreen = () => {
       >
         <FontAwesome name={"arrow-left"} size={15} color={"#fff"} />
       </TouchableOpacity>
+
       {/* Header */}
       <View className="flex-col w-full items-start px-5">
         <Text className="text-white text-3xl font-bold text-left">
@@ -54,6 +80,8 @@ const SignUpScreen = () => {
           </Text>
           <TextInput
             placeholder="example@maryp7"
+            value={username}
+            onChangeText={setUsername}
             className="bg-gray-100 text-gray-500 py-3 px-4 rounded-full mb-4"
           />
         </View>
@@ -65,6 +93,8 @@ const SignUpScreen = () => {
           </Text>
           <TextInput
             placeholder="example@example.com"
+            value={email}
+            onChangeText={setEmail}
             className="bg-gray-100 text-gray-500 py-3 px-4 rounded-full mb-4"
           />
         </View>
@@ -76,6 +106,8 @@ const SignUpScreen = () => {
           </Text>
           <TextInput
             placeholder="enter phone number"
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
             className="bg-gray-100 text-gray-500 py-3 px-4 rounded-full mb-4"
           />
         </View>
@@ -89,6 +121,8 @@ const SignUpScreen = () => {
             <TextInput
               placeholder="••••••••"
               secureTextEntry={!passwordVisible}
+              value={password}
+              onChangeText={setPassword}
               className="bg-gray-100 text-gray-500 py-3 px-4 rounded-full"
             />
             <TouchableOpacity
@@ -104,29 +138,31 @@ const SignUpScreen = () => {
 
         {/* Terms and Conditions */}
         <View className="flex-row items-center mt-4">
-          {/* <Checkbox
+          <Checkbox
             status={isChecked ? "checked" : "unchecked"}
             onPress={() => setIsChecked(!isChecked)}
-            // className="mr-2"
-          /> */}
+          />
           <Text className="text-gray-500">
-            Accept the{" "}
-            <Text className="text-blue-500 underline">Terms & Condition</Text>
+            Accept the
+            <Text className="text-blue-500 underline"> Terms & Conditions</Text>
           </Text>
         </View>
 
         {/* Proceed Button */}
         <TouchableOpacity
           className={`mt-8 py-3 rounded-full ${
-            isChecked ? "bg-blue-100" : "bg-gray-300"
+            isChecked ? "bg-blue-400" : "bg-gray-300"
           }`}
           disabled={!isChecked}
+          onPress={handleSignUp}
         >
-          <Text className="text-center font-semibold text-blue-500">
-            Creat Account
+          <Text className="text-center font-semibold text-white">
+            Create Account
           </Text>
         </TouchableOpacity>
-        <Text className="text-back text-center text-xl font-bold my-3">OR</Text>
+        <Text className="text-black text-center text-xl font-bold my-3">
+          OR
+        </Text>
         <Text className="text-black text-center font-light">
           Already have an account?
         </Text>

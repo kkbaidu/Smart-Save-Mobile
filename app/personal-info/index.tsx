@@ -55,7 +55,7 @@ export default function EditProfileScreen() {
               <FontAwesome name="user-o" size={20} color="black" />
               <TextInput
                 className="flex-1 ml-4 text-base"
-                value="Tanya Myroniuk"
+                value="Mary Akua"
                 editable={true}
               />
             </View>
@@ -68,7 +68,7 @@ export default function EditProfileScreen() {
               <FontAwesome name="envelope-o" size={20} color="black" />
               <TextInput
                 className="flex-1 ml-4 text-base"
-                value="tanya.myroniuk@gmail.com"
+                value="maryakua@gmail.com"
                 editable={true}
                 keyboardType="email-address"
               />
@@ -82,7 +82,7 @@ export default function EditProfileScreen() {
               <FontAwesome name="phone" size={20} color="black" />
               <TextInput
                 className="flex-1 ml-4 text-base"
-                value="+8801712663389"
+                value="0203215867"
                 editable={true}
                 keyboardType="phone-pad"
               />
@@ -116,13 +116,14 @@ export default function EditProfileScreen() {
 
         {/* Joined Date */}
         <View className="mt-4 items-center">
-          <Text className="text-blue-500 text-sm">Joined 28 Jan 2021</Text>
+          <Text className="text-blue-500 text-sm">Joined 15 Jan 2025</Text>
         </View>
         <TouchableOpacity
           className="bg-blue-500 py-3 rounded-full mt-8 mb-4"
-          onPress={() =>
-            Alert.alert("Success", "Personal Information updated successfully")
-          }
+          onPress={() => {
+            Alert.alert("Success", "Personal Information updated successfully");
+            router.push("/(tabs)/account");
+          }}
         >
           <Text className="text-white text-center font-semibold">Save</Text>
         </TouchableOpacity>

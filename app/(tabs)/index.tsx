@@ -1,8 +1,32 @@
+import React, { useState } from "react";
 import { router } from "expo-router";
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import { Link } from "expo-router";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  Modal,
+} from "react-native";
 
 const HomeScreen = () => {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible((prev) => !prev);
+  };
+
+  const handleProfileInfo = () => {
+    setDropdownVisible(false);
+    router.push("/personal-info"); // Navigate to profile info screen
+  };
+
+  const handleSignOut = () => {
+    setDropdownVisible(false);
+    router.dismissTo("/login");
+    alert("Signed out successfully!");
+  };
+
   return (
     <View className="flex-1 bg-white">
       <View className="fixed bg-[#fff] top-0 flex-row justify-between items-center py-4 px-7">
@@ -13,12 +37,14 @@ const HomeScreen = () => {
         />
 
         <View className="flex-row items-center space-x-2">
-          <TouchableOpacity>
+          {/* Profile Picture with Dropdown */}
+          <TouchableOpacity onPress={toggleDropdown}>
             <Image
               source={require("@/assets/images/profile-pic.png")}
               className="w-10 h-10 rounded-full mr-1"
             />
           </TouchableOpacity>
+
           <TouchableOpacity className="bg-gray-100 p-2 rounded-full">
             <Image
               source={require("@/assets/images/bell-icon.png")}
@@ -28,6 +54,21 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+
+      {/* Dropdown Menu */}
+      {dropdownVisible && (
+        <View className="absolute right-8 top-16 bg-white shadow-lg rounded-md z-50 p-4">
+          <TouchableOpacity
+            onPress={handleProfileInfo}
+            className="py-2 border-b border-gray-200"
+          >
+            <Text className="text-gray-800">Profile Info</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleSignOut} className="py-2">
+            <Text className="text-red-500">Sign Out</Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
       <ScrollView className="flex-1 bg-white px-12">
         {/* Header */}
