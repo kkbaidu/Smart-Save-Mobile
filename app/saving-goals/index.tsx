@@ -42,7 +42,6 @@ const SavingGoals = () => {
                     }
                   }}
                 >
-                  {/* <Text className="text-white text-5xl">←</Text> */}
                   <FontAwesome name={"arrow-left"} size={15} color={"#fff"} />
                 </TouchableOpacity>
                 <Text className="text-white text-sm w-48">

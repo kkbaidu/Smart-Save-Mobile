@@ -12,9 +12,8 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     if (email && password) {
-      // Simulate a successful login
       Alert.alert("Login Successful", "Welcome back!");
-      router.replace("/(tabs)"); // Redirect to the tabs screen after login
+      router.replace("/(tabs)");
     } else {
       Alert.alert("Error", "Please enter both email and password.");
     }
@@ -37,7 +36,6 @@ const LoginScreen = () => {
         }}
         className="absolute top-4 left-4"
       >
-        {/* <Text className="text-white text-5xl">←</Text> */}
         <FontAwesome name={"arrow-left"} size={15} color={"#fff"} />
       </TouchableOpacity>
       {/* Welcome Text */}

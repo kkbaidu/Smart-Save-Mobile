@@ -15,7 +15,7 @@ const LandingScreen = () => {
           resizeMode="contain"
         />
         <Image
-          source={require("@/assets/images/smart-save-logo.png")} // Replace with your logo path
+          source={require("@/assets/images/smart-save-logo.png")}
           className="w-[15rem] h-[5rem]"
           resizeMode="contain"
         />

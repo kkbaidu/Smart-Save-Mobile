@@ -89,7 +89,6 @@ const HomeScreen = () => {
                 Unlock
               </Text>
               <Text className="text-[35px] font-nomal tracking-wider">
-                {" "}
                 Your
               </Text>
             </View>
